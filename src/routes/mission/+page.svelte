@@ -1,30 +1,26 @@
-<script>
+<script lang="ts">
+	import Header from '$lib/components/Header.svelte';
 	import List from '$lib/components/List.svelte';
-	import * as Button from '$lib/components/ui/button/index.ts';
+	import type { PageData } from './$types';
+
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 </script>
 
-<Button.Root href="/" variant="ghost" class="w-auto">Zurück</Button.Root>
-<h1 class="text-4xl font-bold">Missionen</h1>
+<Header title="Missionen" faIcon="fa-rocket" breadcrumbs={[{ faIcon: 'rocket' }]} />
 
+{#if data.missions && data.missions.length > 0}
 <List
-	items={[
-		{
-			title: 'Mission 1',
-			description: 'Beschreibung der Mission 1',
-			href: '/mission/1',
-			faIcon: 'fa-rocket'
-		},
-		{
-			title: 'Mission 2',
-			description: 'Beschreibung der Mission 2',
-			href: '/mission/2',
-			faIcon: 'fa-rocket'
-		},
-		{
-			title: 'Mission 3',
-			description: 'Beschreibung der Mission 3',
-			href: '/mission/3',
-			faIcon: 'fa-rocket'
-		}
-	]}
+	items={data.missions.map(mission => ({
+		title: mission.title,
+		description: mission.description,
+		faIcon: mission.faIcon,
+		href: `/mission/${mission.id}`
+	}))}
 />
+{:else}
+<p>Keine Missionen gefunden</p>
+{/if}

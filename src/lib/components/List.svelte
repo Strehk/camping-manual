@@ -21,12 +21,15 @@
 		>
 			<div class="flex items-center justify-center">
 				<div class="flex h-12 w-12 items-center justify-center rounded-full bg-zinc-200">
-					<i class="fas {item.faIcon} text-4xl"></i>a
+					<i class="fas {item.faIcon} text-lg"></i>
 				</div>
 			</div>
 			<div class="flex w-full flex-1 flex-col gap-2">
 				<h2 class="text-2xl font-bold">{item.title}</h2>
 				<p>{item.description}</p>
+			</div>
+			<div class="hidden flex-col items-end justify-center sm:flex">
+				<i class="fas fa-arrow-right text-3xl"></i>
 			</div>
 		</a>
 
