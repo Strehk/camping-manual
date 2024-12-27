@@ -15,41 +15,45 @@
 	let { title, description, faIcon, breadcrumbs }: Props = $props();
 </script>
 
-{#if breadcrumbs}
-	<Breadcrumb.Root>
-		<Breadcrumb.List>
-			<Breadcrumb.Item>
-				<Breadcrumb.Link href="/"><i class="fas fa-home"></i></Breadcrumb.Link>
-			</Breadcrumb.Item>
-			<Breadcrumb.Separator />
-
-			{#each breadcrumbs as breadcrumb, i}
+<div class="flex w-full flex-col">
+	{#if breadcrumbs}
+		<Breadcrumb.Root>
+			<Breadcrumb.List>
 				<Breadcrumb.Item>
-					<Breadcrumb.Link href={breadcrumb.href}>
-						{#if breadcrumb.faIcon}
-							<i class="fas fa-{breadcrumb.faIcon.replace('fa-', '')}"></i>
-						{/if}
-						{#if breadcrumb.title}
-							{breadcrumb.title}
-						{/if}
-					</Breadcrumb.Link>
+					<Breadcrumb.Link href="/"><i class="fas fa-home"></i></Breadcrumb.Link>
 				</Breadcrumb.Item>
-				{#if i !== breadcrumbs.length - 1}
-					<Breadcrumb.Separator />
-				{/if}
-			{/each}
-		</Breadcrumb.List>
-	</Breadcrumb.Root>
-{/if}
+				<Breadcrumb.Separator />
 
-<div class="mt-4 flex w-full items-start gap-4">
-	<div class="flex h-12 w-12 items-center justify-center rounded-full bg-zinc-900 text-zinc-50">
-		<i class="fas fa-{faIcon.replace('fa-', '')}"></i>
-	</div>
-	<div class="flex flex-1 flex-col gap-2">
-		<h1 class="mt-1 text-4xl font-bold">{title}</h1>
-		{#if description}
-			<p class="text-lg">{description}</p>
-		{/if}
+				{#each breadcrumbs as breadcrumb, i}
+					<Breadcrumb.Item>
+						<Breadcrumb.Link href={breadcrumb.href} class="flex items-center gap-2">
+							{#if breadcrumb.faIcon}
+								<i class="fas fa-{breadcrumb.faIcon.replace('fa-', '')}"></i>
+							{/if}
+							{#if breadcrumb.title}
+								<div class="translate-y-px">
+									{breadcrumb.title}
+								</div>
+							{/if}
+						</Breadcrumb.Link>
+					</Breadcrumb.Item>
+					{#if i !== breadcrumbs.length - 1}
+						<Breadcrumb.Separator />
+					{/if}
+				{/each}
+			</Breadcrumb.List>
+		</Breadcrumb.Root>
+	{/if}
+
+	<div class="mt-4 flex w-full flex-col items-start gap-4 sm:flex-row">
+		<div class="flex h-12 w-12 items-center justify-center rounded-full bg-zinc-900 text-zinc-50">
+			<i class="fas fa-{faIcon.replace('fa-', '')}"></i>
+		</div>
+		<div class="flex flex-1 flex-col gap-2">
+			<h1 class="mt-1 text-4xl font-bold">{title}</h1>
+			{#if description}
+				<div class="prose-lg">{@html description}</div>
+			{/if}
+		</div>
 	</div>
 </div>

@@ -59,7 +59,11 @@ const config: Config = {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				info: "#1e90ff",
+				success: "#00ff00",
+				warning: "#ff8c00",
+				danger: "#ff0000"
 			},
 			borderRadius: {
 				xl: 'calc(var(--radius) + 4px)',
