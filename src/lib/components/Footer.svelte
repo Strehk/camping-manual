@@ -4,6 +4,6 @@
 		<a href="/privacy" class="hover:underline">Datenschutz</a>
 	</div>
     <div class="text-sm text-zinc-700">
-        Copyright © 2024–{new Date().getFullYear()} Tade Strehk
+        Copyright © 2024–{new Date().getFullYear()} <a href="https://github.com/strehk" class="hover:underline">Tade Strehk</a>
     </div>
 </div>
