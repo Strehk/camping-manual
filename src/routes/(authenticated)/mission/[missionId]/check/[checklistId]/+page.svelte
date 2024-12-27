@@ -22,6 +22,10 @@
 	iconClass="bg-checklist"
 />
 
-<Checklist todos={data.checklist.expand?.todos} alerts={data.checklist.expand?.alerts} />
+<Checklist
+	todos={data.checklist.expand?.todos}
+	alerts={data.checklist.expand?.alerts}
+	user={data.user}
+/>
 
 <div class="h-32"></div>

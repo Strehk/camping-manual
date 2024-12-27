@@ -9,8 +9,9 @@
 	import { usePocketBase } from '$lib/pocketbase.js';
 	import { setUserContext } from '$lib/contexts/user';
 	import { onDestroy } from 'svelte';
-	import Logout from '$lib/components/Logout.svelte';
+	import Logout from '$lib/components/LogoutBtn.svelte';
 	import { json } from '@sveltejs/kit';
+	import Footer from '$lib/components/Footer.svelte';
 
 	let { data, children } = $props();
 
@@ -38,7 +39,7 @@
 
 <div class="flex h-screen w-full flex-col items-start justify-start gap-4 p-4 sm:gap-10 sm:p-10">
 	{@render children()}
-	<!-- <div class="mt-32"></div> -->
+	<Footer />
 </div>
 
 {#if $user}

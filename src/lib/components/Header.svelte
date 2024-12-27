@@ -52,7 +52,7 @@
 		</Breadcrumb.Root>
 	{/if}
 
-	<div class="mt-4 flex w-full flex-col items-start gap-4 sm:flex-row">
+	<div class="mt-10 flex w-full flex-col items-start gap-4 sm:flex-row">
 		<div class="flex h-12 w-12 items-center justify-center rounded-full {iconClass} text-zinc-50">
 			<i class="fas fa-{faIcon.replace('fa-', '')}"></i>
 		</div>

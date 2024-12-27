@@ -10,22 +10,26 @@ export const load: LayoutLoad = async ({ params }) => {
 
 	const sequences_raw = await pb
 		.collection('mission_sequence')
-		.getList(0, 100, { filter: `mission.id='${missionId}'`, expand: 'sequence' });
+		.getFullList({ filter: `mission.id='${missionId}'`, expand: 'sequence,done' });
 
-	const orderedSequences = sequences_raw.items
+	const orderedSequences = sequences_raw
 		.filter((x) => x.stepCount > 0)
 		.sort((a, b) => a.stepCount - b.stepCount)
-		.map((x) => x.expand?.sequence);
+		.map((x) => ({ done: x.expand?.done, ...x.expand?.sequence, missionRelation: x.id }));
 
-	const unorderedSequences = sequences_raw.items
+	const unorderedSequences = sequences_raw
 		.filter((x) => x.stepCount === 0)
-		.map((x) => x.expand?.sequence);
+		.map((x) => ({ done: x.expand?.done, ...x.expand?.sequence, missionRelation: x.id }));
 
 	const checklists_raw = await pb
 		.collection('mission_checklist')
-		.getList(0, 100, { filter: `mission.id='${missionId}'`, expand: 'checklist' });
+		.getFullList({ filter: `mission.id='${missionId}'`, expand: 'checklist,done' });
 
-	const checklists = checklists_raw.items.map((x) => x.expand?.checklist);
+	const checklists = checklists_raw.map((x) => ({
+		done: x.expand?.done,
+		...x.expand?.checklist,
+		missionRelation: x.id
+	}));
 
 	return {
 		mission,

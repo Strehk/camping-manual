@@ -1,14 +1,13 @@
 <script lang="ts">
-	import { Separator } from '$lib/components/ui/separator/index.ts';
-	import { Checkbox } from '$lib/components/ui/checkbox/index.ts';
 	import * as Card from '$lib/components/ui/card/index.ts';
+	import PersonalCheckBox from './PersonalCheckBox.svelte';
 
 	interface Props {
 		items: {
 			title: string;
 			description?: string;
 			href?: string;
-			done: boolean;
+			userDone: any;
 			toggleDone: () => void;
 		}[];
 		ordered?: boolean;
@@ -20,12 +19,12 @@
 <div class="flex w-full flex-col gap-2">
 	{#each items as item, i}
 		<Card.Root>
-			<Card.Content class="flex gap-6">
+			<Card.Content class="flex items-center gap-6">
 				<div class="flex items-center justify-center">
-					<Checkbox checked={item.done} onclick={item.toggleDone} onkeydown={item.toggleDone} />
+					<PersonalCheckBox toggleDone={item.toggleDone} user={item.userDone} />
 				</div>
-				<a class="flex w-full flex-1 flex-col gap-2" href={item.href}>
-					<h2 class="text-xl font-bold sm:text-2xl {item.done && 'line-through'}">
+				<a class="flex w-full flex-1 flex-col gap-2 {item.userDone && 'opacity-30'}" href={item.href}>
+					<h2 class="text-xl font-bold sm:text-2xl">
 						{#if ordered}
 							<span>{i + 1}.</span>
 						{/if}

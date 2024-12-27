@@ -5,7 +5,9 @@ export const useChecklist = async (checklistId: string) => {
 
 	const checklist = await pb
 		.collection('checklist')
-		.getOne(checklistId, { expand: 'todos,alerts' });
+		.getOne(checklistId, { expand: 'todos,alerts,todos.done' });
+
+	console.log(checklist);
 
 	return {
 		checklist

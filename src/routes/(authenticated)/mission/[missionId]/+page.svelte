@@ -16,15 +16,15 @@
 	let pb = usePocketBase();
 
 	const toggleSequenceDone = async (sequenceId: string, newState: boolean) => {
-		await pb.collection('sequence').update(sequenceId, {
-			done: newState
+		await pb.collection('mission_sequence').update(sequenceId, {
+			done: newState ? data.user.id : null
 		});
 		invalidateAll();
 	};
 
 	const toggleChecklistDone = async (checklistId: string, newState: boolean) => {
-		await pb.collection('checklist').update(checklistId, {
-			done: newState
+		await pb.collection('mission_checklist').update(checklistId, {
+			done: newState ? data.user.id : null
 		});
 		invalidateAll();
 	};
@@ -53,8 +53,8 @@
 				title: sequence.title,
 				description: sequence.info,
 				href: `./${data.mission.id}/seq/${sequence.id}`,
-				done: sequence.done,
-				toggleDone: () => toggleSequenceDone(sequence.id, !sequence.done)
+				userDone: sequence.done,
+				toggleDone: () => toggleSequenceDone(sequence.missionRelation, !sequence.done)
 			}))}
 		/>
 	</ListsWrapper>
@@ -67,8 +67,8 @@
 				title: sequence.title,
 				description: sequence.info,
 				href: `./${data.mission.id}/seq/${sequence.id}`,
-				done: sequence.done,
-				toggleDone: () => toggleSequenceDone(sequence.id, !sequence.done)
+				userDone: sequence.done,
+				toggleDone: () => toggleSequenceDone(sequence.missionRelation, !sequence.done)
 			}))}
 		/>
 	</ListsWrapper>
@@ -81,8 +81,8 @@
 				title: checklist.title,
 				description: checklist.info,
 				href: `./${data.mission.id}/check/${checklist.id}`,
-				done: checklist.done,
-				toggleDone: () => toggleChecklistDone(checklist.id, !checklist.done)
+				userDone: checklist.done,
+				toggleDone: () => toggleChecklistDone(checklist.missionRelation, !checklist.done)
 			}))}
 		/>
 	</ListsWrapper>

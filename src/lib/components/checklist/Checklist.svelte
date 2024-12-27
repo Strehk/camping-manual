@@ -8,15 +8,16 @@
 	interface Props {
 		todos: any[];
 		alerts: any[];
+		user: any;
 	}
 
-	let { todos, alerts }: Props = $props();
+	let { todos, alerts, user }: Props = $props();
 
 	let pb = usePocketBase();
 
 	const toggleTodoDone = async (todoId: string, newState: boolean) => {
 		await pb.collection('todo').update(todoId, {
-			done: newState
+			done: newState ? user.id : null
 		});
 		invalidateAll();
 	};
@@ -31,8 +32,8 @@
 		<ListWithChecks
 			items={todos.map((todo) => ({
 				title: todo.title,
-				done: todo.done,
-				toggleDone: () => toggleTodoDone(todo.id, !todo.done)
+				userDone: todo.expand?.done,
+				toggleDone: () => toggleTodoDone(todo.id, !todo.expand?.done)
 			}))}
 		/>
 	</ListsWrapper>

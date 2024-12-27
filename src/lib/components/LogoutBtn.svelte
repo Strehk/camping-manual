@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { applyAction, enhance } from '$app/forms';
-	import { getUserContext, usePocketBase } from '$lib/pocketbase';
+	import { usePocketBase } from '$lib/pocketbase';
 	import * as AlertDialog from '$lib/components/ui/alert-dialog/index.js';
-	import * as Avatar from '$lib/components/ui/avatar/index.ts';
+	import Avatar from './Avatar.svelte';
 
 	interface Props {
 		user: any;
@@ -11,23 +11,12 @@
 	const pb = usePocketBase();
 
 	let { user }: Props = $props();
-
-	const getImage = async () => {
-		await pb.files.getURL(user, user.avatar, { thumb: '100x100' });
-	};
 </script>
 
 <AlertDialog.Root>
-	<div class="fixed right-0 top-0 p-4">
+	<div class="fixed right-0 top-0 p-4 sm:p-10">
 		<AlertDialog.Trigger>
-			<Avatar.Root>
-				{#await pb.files.getURL(user, user.avatar, { thumb: '100x100' }) then data}
-					<Avatar.Image src={data} alt="@shadcn" />
-				{/await}
-				<Avatar.Fallback>
-					{user.username.slice(0, 1).toUpperCase()}
-				</Avatar.Fallback>
-			</Avatar.Root>
+			<Avatar {user} />
 		</AlertDialog.Trigger>
 	</div>
 
