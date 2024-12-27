@@ -19,6 +19,6 @@
 		<i class="fas fa-code-compare"></i> Version: {configPublic.PUBLIC_VERSION ?? 'dev'}
 	</div>
 	<div class="text-sm text-zinc-700">
-		<i class="fas fa-gear-code"></i> Branch: {configPublic.PUBLIC_SHA ?? 'n/a'}
+		<i class="fas fa-gear-code"></i> SHA: {configPublic.PUBLIC_SHA ?? 'n/a'}
 	</div>
 </div>
