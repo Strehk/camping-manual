@@ -4,6 +4,7 @@
 	import ListWithChecks from '$lib/components/ListWithChecks.svelte';
 	import Warning from '$lib/components/Warning.svelte';
 	import { usePocketBase } from '$lib/pocketbase.svelte.ts';
+	import ResetChecks from '../ResetChecks.svelte';
 
 	interface Props {
 		todos: any[];
@@ -20,6 +21,18 @@
 			done: newState ? user.id : null
 		});
 		invalidateAll();
+	};
+
+	const resetChecks = async () => {
+		const batch = pb.createBatch();
+
+		for (const todo of todos) {
+			batch.collection('todo').update(todo.id, {
+				done: null
+			});
+		}
+	const result = await batch.send();
+	invalidateAll();
 	};
 </script>
 
@@ -40,3 +53,5 @@
 {:else}
 	<p>Keine Todos vorhanden</p>
 {/if}
+
+<ResetChecks resetChecks={resetChecks} />

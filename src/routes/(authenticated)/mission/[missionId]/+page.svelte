@@ -3,6 +3,7 @@
 	import Header from '$lib/components/Header.svelte';
 	import ListsWrapper from '$lib/components/ListsWrapper.svelte';
 	import ListWithChecks from '$lib/components/ListWithChecks.svelte';
+	import ResetChecks from '$lib/components/ResetChecks.svelte';
 	import Warning from '$lib/components/Warning.svelte';
 	import { usePocketBase } from '$lib/pocketbase.svelte.ts';
 	import type { PageData } from './$types';
@@ -26,6 +27,33 @@
 		await pb.collection('mission_checklist').update(checklistId, {
 			done: newState ? data?.user?.id : null
 		});
+		invalidateAll();
+	};
+
+	const resetChecks = async () => {
+		const batch = pb.createBatch();
+
+		const resetSequence = (sequenceId: string) => {
+			batch.collection('mission_sequence').update(sequenceId, {
+				done: null
+			});
+		};
+
+		for (const sequence of data.orderedSequences) {
+			resetSequence(sequence.missionRelation);
+		}
+
+		for (const sequence of data.unorderedSequences) {
+			resetSequence(sequence.missionRelation);
+		}
+
+		for (const checklist of data.checklists) {
+			batch.collection('mission_checklist').update(checklist.missionRelation, {
+				done: null
+			});
+		}
+
+		const result = await batch.send();
 		invalidateAll();
 	};
 </script>
@@ -88,4 +116,4 @@
 	</ListsWrapper>
 {/if}
 
-<div class="h-32"></div>
+<ResetChecks {resetChecks} />
