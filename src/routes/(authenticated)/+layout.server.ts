@@ -1,4 +1,3 @@
-import { usePocketBase } from '$lib/pocketbase';
 import { redirect } from '@sveltejs/kit';
 import type { LayoutServerLoad } from './$types';
 

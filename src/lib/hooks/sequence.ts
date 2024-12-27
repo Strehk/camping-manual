@@ -1,8 +1,6 @@
-import { usePocketBase } from '$lib/pocketbase';
+import { usePocketBase } from '$lib/pocketbase.svelte.ts';
 
-export const useSequence = async (sequenceId: string) => {
-	const pb = usePocketBase();
-
+export const useSequence = async (pb: any, sequenceId: string) => {
 	const sequence = await pb
 		.collection('sequence')
 		.getOne(sequenceId, { expand: 'alerts,steps,steps.alerts' });

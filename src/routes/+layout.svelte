@@ -6,11 +6,10 @@
 	import { env } from '$env/dynamic/public';
 	import { writable } from 'svelte/store';
 	import { browser } from '$app/environment';
-	import { usePocketBase } from '$lib/pocketbase.js';
+	import { usePocketBase } from '$lib/pocketbase.svelte.ts';
 	import { setUserContext } from '$lib/contexts/user';
 	import { onDestroy } from 'svelte';
 	import Logout from '$lib/components/LogoutBtn.svelte';
-	import { json } from '@sveltejs/kit';
 	import Footer from '$lib/components/Footer.svelte';
 
 	let { data, children } = $props();

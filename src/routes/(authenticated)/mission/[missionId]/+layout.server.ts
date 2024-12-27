@@ -1,14 +1,13 @@
-import { usePocketBase } from '$lib/pocketbase';
-import type { LayoutLoad } from './$types';
+import { usePocketBase } from '$lib/pocketbase.svelte.ts';
+import { redirect } from '@sveltejs/kit';
+import type { LayoutServerLoad } from './$types';
 
-export const load: LayoutLoad = async ({ params }) => {
+export const load: LayoutServerLoad = async ({ params, locals }) => {
 	const missionId = params.missionId;
 
-	const pb = usePocketBase();
+	const mission = await locals.pb.collection('mission').getOne(missionId, { expand: 'alerts' });
 
-	const mission = await pb.collection('mission').getOne(missionId, { expand: 'alerts' });
-
-	const sequences_raw = await pb
+	const sequences_raw = await locals.pb
 		.collection('mission_sequence')
 		.getFullList({ filter: `mission.id='${missionId}'`, expand: 'sequence,done' });
 
@@ -21,7 +20,7 @@ export const load: LayoutLoad = async ({ params }) => {
 		.filter((x) => x.stepCount === 0)
 		.map((x) => ({ done: x.expand?.done, ...x.expand?.sequence, missionRelation: x.id }));
 
-	const checklists_raw = await pb
+	const checklists_raw = await locals.pb
 		.collection('mission_checklist')
 		.getFullList({ filter: `mission.id='${missionId}'`, expand: 'checklist,done' });
 

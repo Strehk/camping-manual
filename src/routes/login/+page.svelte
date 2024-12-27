@@ -5,7 +5,7 @@
 	import { Input } from '$lib/components/ui/input/index.ts';
 	import { Label } from '$lib/components/ui/label/index.ts';
 	import { superForm } from 'sveltekit-superforms';
-	import { usePocketBase } from '$lib/pocketbase.js';
+	import { usePocketBase } from '$lib/pocketbase.svelte.ts';
 	import BackButton from '$lib/components/BackButton.svelte';
 
 	let { data } = $props();

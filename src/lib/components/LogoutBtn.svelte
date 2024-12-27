@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { applyAction, enhance } from '$app/forms';
-	import { usePocketBase } from '$lib/pocketbase';
+	import { usePocketBase } from '$lib/pocketbase.svelte.ts';
 	import * as AlertDialog from '$lib/components/ui/alert-dialog/index.js';
 	import Avatar from './Avatar.svelte';
 

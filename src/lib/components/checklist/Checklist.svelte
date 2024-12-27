@@ -3,7 +3,7 @@
 	import ListsWrapper from '$lib/components/ListsWrapper.svelte';
 	import ListWithChecks from '$lib/components/ListWithChecks.svelte';
 	import Warning from '$lib/components/Warning.svelte';
-	import { usePocketBase } from '$lib/pocketbase';
+	import { usePocketBase } from '$lib/pocketbase.svelte.ts';
 
 	interface Props {
 		todos: any[];

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { usePocketBase } from '$lib/pocketbase';
+	import { usePocketBase } from '$lib/pocketbase.svelte.ts';
 
 	interface Props {
 		imageId: string;

@@ -4,7 +4,7 @@
 	import ListsWrapper from '$lib/components/ListsWrapper.svelte';
 	import ListWithChecks from '$lib/components/ListWithChecks.svelte';
 	import Warning from '$lib/components/Warning.svelte';
-	import { usePocketBase } from '$lib/pocketbase';
+	import { usePocketBase } from '$lib/pocketbase.svelte.ts';
 	import type { PageData } from './$types';
 
 	interface Props {
@@ -17,14 +17,14 @@
 
 	const toggleSequenceDone = async (sequenceId: string, newState: boolean) => {
 		await pb.collection('mission_sequence').update(sequenceId, {
-			done: newState ? data.user.id : null
+			done: newState ? data?.user?.id : null
 		});
 		invalidateAll();
 	};
 
 	const toggleChecklistDone = async (checklistId: string, newState: boolean) => {
 		await pb.collection('mission_checklist').update(checklistId, {
-			done: newState ? data.user.id : null
+			done: newState ? data?.user?.id : null
 		});
 		invalidateAll();
 	};

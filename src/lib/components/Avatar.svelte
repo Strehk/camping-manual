@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Avatar from '$lib/components/ui/avatar/index.ts';
-	import { usePocketBase } from '$lib/pocketbase';
+	import { usePocketBase } from '$lib/pocketbase.svelte.ts';
 	interface Props {
 		user: any;
 	}
