@@ -1,12 +1,12 @@
 import PocketBase from 'pocketbase';
-import { env } from '$env/dynamic/public';
 import type { AuthRecord } from 'pocketbase';
 import { getContext, setContext } from 'svelte';
 import type { Writable } from 'svelte/store';
 import { browser } from '$app/environment';
+import { configPublic } from '../config/public';
 
 export const createInstance = () =>
-	new PocketBase(env.PUBLIC_POCKETBASE_URL ?? 'http://localhost:8090');
+	new PocketBase(configPublic.PUBLIC_POCKETBASE_URL ?? 'http://localhost:8090');
 
 const pb = $state(createInstance());
 
