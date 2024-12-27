@@ -11,7 +11,12 @@
 	let { data }: Props = $props();
 </script>
 
-<Header title="Checkliste" faIcon="fa-tasks" breadcrumbs={[{ faIcon: 'list-ol' }]} />
+<Header
+	title="Checkliste"
+	faIcon="fa-tasks"
+	breadcrumbs={[{ faIcon: 'list-ol' }]}
+	iconClass="bg-checklist"
+/>
 
 {#if data.checklists.items && data.checklists.items.length > 0}
 	{@const items = data.checklists.items}

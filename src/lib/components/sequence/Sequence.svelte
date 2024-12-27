@@ -1,15 +1,9 @@
 <script lang="ts">
-	import { invalidateAll } from '$app/navigation';
-	import Header from '$lib/components/Header.svelte';
 	import ListsWrapper from '$lib/components/ListsWrapper.svelte';
-	import ListWithChecks from '$lib/components/ListWithChecks.svelte';
 	import PocketbaseImage from '$lib/components/PocketbaseImage.svelte';
-	import * as Card from '$lib/components/ui/card/index.ts';
-	import * as Carousel from '$lib/components/ui/carousel/index.ts';
 	import * as Accordion from '$lib/components/ui/accordion/index.ts';
 	import Warning from '$lib/components/Warning.svelte';
 	import WarningBadge from '$lib/components/badges/WarningBadge.svelte';
-	import { usePocketBase } from '$lib/pocketbase';
 	import FaBadge from '$lib/components/badges/FaBadge.svelte';
 
 	interface Props {
@@ -30,7 +24,9 @@
 			{#each steps as step, i}
 				<Accordion.Item value={step.id}>
 					<Accordion.Trigger>
-						<div class="flex items-center gap-4">
+						<div
+							class="flex flex-col items-start gap-4 px-4 text-left sm:flex-row sm:items-center sm:px-0"
+						>
 							<h2 class="text-2xl font-bold">{step.stepNumber}. {step.title}</h2>
 							{#each step.expand?.alerts as alert}
 								<WarningBadge severity={alert.severity} />

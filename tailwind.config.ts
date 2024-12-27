@@ -60,10 +60,13 @@ const config: Config = {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				info: "#1e90ff",
-				success: "#00ff00",
-				warning: "#ff8c00",
-				danger: "#ff0000"
+				info: 'rgb(29 78 216 / var(--tw-bg-opacity, 1))',
+				success: 'rgb(21 128 61 / var(--tw-bg-opacity, 1))',
+				warning: 'rgb(234 88 12 / var(--tw-bg-opacity, 1))',
+				danger: '#ff0000',
+				mission: 'rgb(29 78 216 / var(--tw-bg-opacity, 1))',
+				sequence: 'rgb(21 128 61 / var(--tw-bg-opacity, 1))',
+				checklist: 'rgb(234 88 12 / var(--tw-bg-opacity, 1))'
 			},
 			borderRadius: {
 				xl: 'calc(var(--radius) + 4px)',

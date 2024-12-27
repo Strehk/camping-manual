@@ -25,7 +25,7 @@ export const getWarningBgColor = (severity: Severity) => {
 		case 'info':
 			return 'bg-blue-100';
 		case 'warning':
-			return 'bg-yellow-100';
+			return 'bg-orange-100';
 		case 'danger':
 			return 'bg-red-100';
 		case 'success':
@@ -36,12 +36,12 @@ export const getWarningBgColor = (severity: Severity) => {
 export const getWarningTextColor = (severity: Severity) => {
 	switch (severity) {
 		case 'info':
-			return 'text-blue-800';
+			return 'text-info';
 		case 'warning':
-			return 'text-yellow-800';
+			return 'text-warning';
 		case 'danger':
-			return 'text-red-800';
+			return 'text-danger';
 		case 'success':
-			return 'text-green-800';
+			return 'text-success';
 	}
 };

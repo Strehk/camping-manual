@@ -38,6 +38,7 @@
 		{ title: data.mission.title, faIcon: data.mission.faIcon }
 	]}
 	description={data.mission.description}
+	iconClass="bg-mission"
 />
 
 {#each data.mission.expand?.alerts as alert}

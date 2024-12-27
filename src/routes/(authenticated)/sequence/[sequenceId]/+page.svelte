@@ -18,6 +18,7 @@
 		{ title: data.sequence.title, faIcon: data.sequence.faIcon }
 	]}
 	description={data.sequence.info}
+	iconClass="bg-sequence"
 />
 
 <Sequence sequence={data.sequence} steps={data.steps} />

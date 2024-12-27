@@ -2,7 +2,7 @@ import { superValidate } from 'sveltekit-superforms';
 import { zod } from 'sveltekit-superforms/adapters';
 import { message } from 'sveltekit-superforms';
 import { z } from 'zod';
-import { usePocketBase } from '$lib/pocketbase';
+import { type Actions } from '@sveltejs/kit';
 
 const schema = z.object({
 	email: z.string().email(),
@@ -15,7 +15,7 @@ export const load = async () => {
 	return { form };
 };
 
-export const actions = {
+export const actions: Actions = {
 	default: async ({ request, locals }) => {
 		const form = await superValidate(request, zod(schema));
 
@@ -25,7 +25,7 @@ export const actions = {
 
 		try {
 			await locals.pb.collection('users').authWithPassword(form.data.email, form.data.password);
-			return message(form, 'success');
+			return message(form, 'Login erfolgreich');
 		} catch (err) {
 			return message(form, 'Falsche Email oder Passwort', { status: 403 });
 		}

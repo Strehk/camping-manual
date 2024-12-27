@@ -11,7 +11,12 @@
 	let { data }: Props = $props();
 </script>
 
-<Header title="Sequenzen" faIcon="fa-list-ol" breadcrumbs={[{ faIcon: 'list-ol' }]} />
+<Header
+	title="Sequenzen"
+	faIcon="fa-list-ol"
+	breadcrumbs={[{ faIcon: 'list-ol' }]}
+	iconClass="bg-sequence"
+/>
 
 {#if data.sequences.items && data.sequences.items.length > 0}
 	{@const items = data.sequences.items}

@@ -10,9 +10,16 @@
 			href?: string;
 		}[];
 		description?: string;
+		iconClass?: string;
 	}
 
-	let { title, description, faIcon, breadcrumbs }: Props = $props();
+	let {
+		title,
+		description,
+		faIcon,
+		breadcrumbs,
+		iconClass = 'bg-zinc-900 text-zinc-50'
+	}: Props = $props();
 </script>
 
 <div class="flex w-full flex-col">
@@ -46,7 +53,7 @@
 	{/if}
 
 	<div class="mt-4 flex w-full flex-col items-start gap-4 sm:flex-row">
-		<div class="flex h-12 w-12 items-center justify-center rounded-full bg-zinc-900 text-zinc-50">
+		<div class="flex h-12 w-12 items-center justify-center rounded-full {iconClass} text-zinc-50">
 			<i class="fas fa-{faIcon.replace('fa-', '')}"></i>
 		</div>
 		<div class="flex flex-1 flex-col gap-2">

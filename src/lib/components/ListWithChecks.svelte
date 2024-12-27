@@ -25,14 +25,16 @@
 					<Checkbox checked={item.done} onclick={item.toggleDone} onkeydown={item.toggleDone} />
 				</div>
 				<a class="flex w-full flex-1 flex-col gap-2" href={item.href}>
-					<h2 class="text-2xl font-bold {item.done && 'line-through'}">
+					<h2 class="text-xl font-bold sm:text-2xl {item.done && 'line-through'}">
 						{#if ordered}
 							<span>{i + 1}.</span>
 						{/if}
 						{item.title}
 					</h2>
 					{#if item.description}
-						<div class="line-clamp-2 text-zinc-600">{@html item.description}</div>
+						<div class="line-clamp-2 text-sm text-zinc-600 sm:text-base">
+							{@html item.description}
+						</div>
 					{/if}
 				</a>
 			</Card.Content>

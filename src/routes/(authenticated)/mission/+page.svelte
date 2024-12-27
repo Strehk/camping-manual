@@ -10,7 +10,12 @@
 	let { data }: Props = $props();
 </script>
 
-<Header title="Missionen" faIcon="fa-rocket" breadcrumbs={[{ faIcon: 'rocket' }]} />
+<Header
+	title="Missionen"
+	faIcon="fa-rocket"
+	breadcrumbs={[{ faIcon: 'rocket' }]}
+	iconClass="bg-mission"
+/>
 
 {#if data.missions.items && data.missions.items.length > 0}
 	{@const items = data.missions.items}

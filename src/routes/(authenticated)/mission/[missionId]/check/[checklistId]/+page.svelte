@@ -19,6 +19,7 @@
 		{ title: data.checklist.title, faIcon: data.checklist.faIcon }
 	]}
 	description={data.checklist.info}
+	iconClass="bg-checklist"
 />
 
 <Checklist todos={data.checklist.expand?.todos} alerts={data.checklist.expand?.alerts} />
